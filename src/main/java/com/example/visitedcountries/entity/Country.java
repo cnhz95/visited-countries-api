@@ -1,0 +1,26 @@
+package com.example.visitedcountries.entity;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+@Entity
+@Table(name = "countries")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class Country {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
+    private String region;
+
+    @Column(nullable = false)
+    private Integer population;
+}
