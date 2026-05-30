@@ -24,11 +24,11 @@ docker compose down -v
 
 ### Run with Maven
 
-1. Start PostgreSQL
+1. Start PostgreSQL container
 
 ```bash
 docker run -d \
-    --name postgres \
+    --name visited-countries-db \
     -e POSTGRES_DB=countries \
     -e POSTGRES_USER=postgres \
     -e POSTGRES_PASSWORD=password \
