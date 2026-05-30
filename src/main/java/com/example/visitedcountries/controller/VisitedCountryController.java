@@ -14,17 +14,17 @@ import java.util.List;
 public class VisitedCountryController {
     private final VisitedCountryService visitedCountryService;
 
-    @GetMapping
-    public ResponseEntity<List<VisitedCountry>> getVisitedCountries(@PathVariable Integer userId) {
-        return ResponseEntity.ok(visitedCountryService.getVisitedCountriesForUser(userId));
-    }
-
     @PostMapping
     ResponseEntity<VisitedCountry> createVisitedCountry(
             @PathVariable Integer userId,
             @RequestBody VisitedCountry visitedCountry
     ) {
         return ResponseEntity.ok(visitedCountryService.createVisitedCountry(userId, visitedCountry));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<VisitedCountry>> listVisitedCountries(@PathVariable Integer userId) {
+        return ResponseEntity.ok(visitedCountryService.getUserVisitedCountries(userId));
     }
 
     @PutMapping("/{visitId}/note")

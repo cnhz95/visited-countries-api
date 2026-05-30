@@ -19,11 +19,6 @@ public class VisitedCountryService {
     private final CountryRepository countryRepository;
     private final VisitedCountryRepository visitedCountryRepository;
 
-    @Transactional(readOnly = true)
-    public List<VisitedCountry> getVisitedCountriesForUser(Integer userId) {
-        return visitedCountryRepository.findByUserId(userId);
-    }
-
     @Transactional
     public VisitedCountry createVisitedCountry(Integer userId, VisitedCountry visitedCountry) {
         User user = userRepository.findById(userId)
@@ -38,14 +33,19 @@ public class VisitedCountryService {
         return visitedCountryRepository.save(visitedCountry);
     }
 
+    @Transactional(readOnly = true)
+    public List<VisitedCountry> getUserVisitedCountries(Integer userId) {
+        return visitedCountryRepository.findByUserId(userId);
+    }
+
     @Transactional
     public VisitedCountry updateVisitedCountryNote(Integer userId, Integer visitedCountryId, String note) {
         VisitedCountry visitedCountry = visitedCountryRepository.findByIdAndUserId(visitedCountryId, userId)
                 .orElseThrow();
 
         String cleanedNote = note.replace("\"", "");
-
         visitedCountry.setNote(cleanedNote);
+
         return visitedCountry;
     }
 
