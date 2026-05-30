@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CountryService {
@@ -17,5 +19,9 @@ public class CountryService {
             return countryRepository.findAll(pageable);
         }
         return countryRepository.findCountriesByRegion(region, pageable);
+    }
+
+    public List<String> getAllRegions() {
+        return countryRepository.findAllRegions();
     }
 }

@@ -8,9 +8,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface CountryRepository extends JpaRepository<Country, Integer> {
 
     @Query("SELECT c FROM Country c WHERE c.region = :region")
     Page<Country> findCountriesByRegion(@Param("region") String region, Pageable pageable);
+
+    @Query("SELECT DISTINCT c.region FROM Country c ORDER BY c.region")
+    List<String> findAllRegions();
 }

@@ -9,6 +9,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/countries")
 @RequiredArgsConstructor
@@ -16,10 +18,15 @@ public class CountryController {
     private final CountryService countryService;
 
     @GetMapping
-    public ResponseEntity<Page<Country>> getCountries(
+    public ResponseEntity<Page<Country>> listCountries(
             @RequestParam(required = false) String region,
             @PageableDefault(size = 20, sort = "name") Pageable pageable
     ) {
         return ResponseEntity.ok(countryService.getCountries(region, pageable));
+    }
+
+    @GetMapping("/regions")
+    public ResponseEntity<List<String>> listRegions() {
+        return ResponseEntity.ok(countryService.getAllRegions());
     }
 }
