@@ -5,7 +5,7 @@
 ### Run with Docker Compose
 
 ```bash
-docker compose up -d
+docker compose up -d --build
 ```
 
 The API is available at `http://localhost:8080`
@@ -24,7 +24,7 @@ docker compose down -v
 
 ### Run with Maven
 
-1. Start PostgreSQL container
+1. Start the PostgreSQL container
 
 ```bash
 docker run -d \
