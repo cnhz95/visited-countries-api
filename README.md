@@ -1,5 +1,7 @@
 # Visited Countries API
 
+The database is pre-seeded with a test user with ID 1.
+
 ## Build & Run
 
 ### Run with Docker Compose
