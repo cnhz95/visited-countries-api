@@ -49,3 +49,9 @@ docker run -d \
 ```bash
 java -jar target/VisitedCountries-0.0.1-SNAPSHOT.jar
 ```
+
+## Running Tests
+Tests use Testcontainers, so the PostgreSQL container must be running
+```bash
+./mvnw verify
+```
