@@ -1,10 +1,10 @@
 # Visited Countries API
 
-The database is pre-seeded with a test user with ID 1.
-
 ## Build & Run
 
 ### Run with Docker Compose
+
+Builds the application image, starts the PostgreSQL container, runs Flyway migrations, and calls the REST Countries public API all in one command.
 
 ```bash
 docker compose up -d --build
