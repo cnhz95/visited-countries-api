@@ -3,6 +3,7 @@ package com.example.visitedcountries.controller;
 import com.example.visitedcountries.entity.VisitedCountry;
 import com.example.visitedcountries.service.VisitedCountryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,8 @@ public class VisitedCountryController {
             @PathVariable Integer userId,
             @RequestBody VisitedCountry visitedCountry
     ) {
-        return ResponseEntity.ok(visitedCountryService.createVisitedCountry(userId, visitedCountry));
+        VisitedCountry created = visitedCountryService.createVisitedCountry(userId, visitedCountry);
+        return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
     @GetMapping
