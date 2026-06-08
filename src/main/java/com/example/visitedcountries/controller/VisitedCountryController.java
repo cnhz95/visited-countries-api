@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/users/{userId}/visits")
@@ -29,13 +30,15 @@ public class VisitedCountryController {
         return ResponseEntity.ok(visitedCountryService.getUserVisitedCountries(userId));
     }
 
-    @PutMapping("/{visitId}/note")
-    public ResponseEntity<VisitedCountry> updateVisitedCountryNote(
+    @PatchMapping("/{visitId}")
+    public ResponseEntity<Void> updateVisitedCountryNote(
             @PathVariable Integer userId,
             @PathVariable Integer visitId,
-            @RequestBody String note
+            @RequestBody Map<String, String> body
     ) {
-        return ResponseEntity.ok(visitedCountryService.updateVisitedCountryNote(userId, visitId, note));
+        String note = body.get("note");
+        visitedCountryService.updateVisitedCountryNote(userId, visitId, note);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{visitId}")

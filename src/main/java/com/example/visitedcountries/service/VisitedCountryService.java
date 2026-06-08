@@ -39,14 +39,11 @@ public class VisitedCountryService {
     }
 
     @Transactional
-    public VisitedCountry updateVisitedCountryNote(Integer userId, Integer visitedCountryId, String note) {
+    public void updateVisitedCountryNote(Integer userId, Integer visitedCountryId, String note) {
         VisitedCountry visitedCountry = visitedCountryRepository.findByIdAndUserId(visitedCountryId, userId)
                 .orElseThrow();
 
-        String cleanedNote = note.replace("\"", "");
-        visitedCountry.setNote(cleanedNote);
-
-        return visitedCountry;
+        visitedCountry.setNote(note);
     }
 
     @Transactional
